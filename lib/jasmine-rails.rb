@@ -22,6 +22,7 @@ module JasmineRails
     end
 
     def spec_dir
+      byebug
       paths = jasmine_config['spec_dir'] || 'spec/javascripts'
       [paths].flatten.collect { |path| Rails.root.join(path) }
     end
@@ -109,7 +110,7 @@ module JasmineRails
         path = Rails.root.join('spec', 'javascripts', 'support', 'jasmine.yml') unless File.exists?(path)
         initialize_jasmine_config_if_absent(path)
         require 'yaml'
-        YAML.load_file(path)
+        YAML.load(ERB.new(File.read(path)).result)
       end
     end
 
