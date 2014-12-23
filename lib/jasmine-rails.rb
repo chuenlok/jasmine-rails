@@ -22,7 +22,6 @@ module JasmineRails
     end
 
     def spec_dir
-      byebug
       paths = jasmine_config['spec_dir'] || 'spec/javascripts'
       [paths].flatten.collect { |path| Rails.root.join(path) }
     end
